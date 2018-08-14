@@ -17,6 +17,11 @@
     "name": "Heather Roberts",
     "email": "heather.roberts427@gmail.com"
   },
+  "keywords": [
+    "storybook",
+    "storybook-addon",
+    "prettier"
+  ],
   "dependencies": {
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
