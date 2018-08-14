@@ -1,0 +1,22 @@
+{
+  "name": "storybook-addon-prettier-source",
+  "version": "1.0.0",
+  "description": "Storybook addon to show inline story source formatted using prettier and a syntax highlighter",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chinchiheather/storybook-addon-prettier-source.git"
+  },
+  "author": {
+    "name": "Heather Roberts",
+    "email": "heather.roberts427@gmail.com"
+  },
+  "dependencies": {
+    "prettier": "^1.14.2",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.2",
+    "react-element-to-string": "^1.0.2",
+    "react-syntax-highlighter": "^8.0.1"
+  }
+}
