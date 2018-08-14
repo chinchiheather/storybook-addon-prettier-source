@@ -2,9 +2,10 @@
   "name": "storybook-addon-prettier-source",
   "version": "1.0.0",
   "description": "Storybook addon to show inline story source formatted using prettier and a syntax highlighter",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
+    "compile": "rollup -c",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src"
   },
@@ -24,7 +25,12 @@
     "react-syntax-highlighter": "^8.0.1"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.6",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
     "eslint": "4",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
@@ -32,6 +38,11 @@
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.0",
-    "eslint-plugin-unicorn": "^5.0.0"
+    "eslint-plugin-unicorn": "^5.0.0",
+    "rollup": "^0.64.1",
+    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^9.1.5",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "rollup-plugin-postcss": "^1.6.2"
   }
 }
