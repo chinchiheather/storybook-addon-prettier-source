@@ -4,6 +4,10 @@
   "description": "Storybook addon to show inline story source formatted using prettier and a syntax highlighter",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/chinchiheather/storybook-addon-prettier-source.git"
@@ -18,5 +22,16 @@
     "react": "^16.4.2",
     "react-element-to-string": "^1.0.2",
     "react-syntax-highlighter": "^8.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.6",
+    "eslint": "4",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.0",
+    "eslint-plugin-unicorn": "^5.0.0"
   }
 }

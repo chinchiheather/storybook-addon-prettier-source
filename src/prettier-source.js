@@ -8,7 +8,7 @@ import SyntaxHighlighter, {
 } from 'react-syntax-highlighter/prism-light';
 import jsx from 'react-syntax-highlighter/languages/prism/jsx';
 import dark from 'react-syntax-highlighter/styles/prism/tomorrow';
-import './inline-source.css';
+import './prettier-source.css';
 
 registerLanguage('jsx', jsx);
 
@@ -32,7 +32,10 @@ export class PrettierSource extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (this.props.children !== newProps.children) {
+    const { children } = this.props;
+    const { children: newChildren } = newProps;
+
+    if (children !== newChildren) {
       this.setState({
         prettified: this.prettifyChildren(
           newProps.children,
