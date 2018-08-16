@@ -16,7 +16,7 @@ export default {
     'react-syntax-highlighter/prism-light',
     'react-syntax-highlighter/languages/prism/jsx',
     'react-syntax-highlighter/styles/prism/tomorrow',
-    'react-element-to-string'
+    'react-element-to-jsx-string'
   ],
   plugins: [
     resolve(),

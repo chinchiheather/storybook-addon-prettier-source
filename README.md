@@ -2,6 +2,8 @@
 
 Storybook addon to show inline story source code formatted using prettier and syntax highlighting
 
+This is an addon for use with [@storybook/react](https://github.com/storybooks/storybook/tree/master/app/react)
+
 ![screenshot 1](https://chinchiheather.github.io/storybook-addon-prettier-source/img/screenshot-1.png)
 
 ## Setup

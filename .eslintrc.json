@@ -46,7 +46,8 @@
     "import/no-extraneous-dependencies": ["error", {
       "devDependencies": [
         "scripts/**/*.js",
-        "**/*.spec.js"
+        "**/*.spec.js",
+        "rollup.config.js"
       ]
     }],
     "no-new": 0,
