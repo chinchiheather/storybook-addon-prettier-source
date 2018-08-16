@@ -897,7 +897,7 @@ var PrettierSource = function (_Component) {
       // spaces between tags caused by newline removal
       var stringifiedChildren = reactElementToJsxString(children, _extends({
         sortProps: false
-      }, reactElToStringOpts)).replace(/\n/g, '').replace(/>\s+</g, '><'); // test
+      }, reactElToStringOpts)).replace(/\n/g, '').replace(/>\s+</g, '><');
 
       var prettified = prettier.format(stringifiedChildren, _extends({
         parser: 'babylon',
