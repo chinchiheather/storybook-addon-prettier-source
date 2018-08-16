@@ -47,6 +47,7 @@ import { withPrettierSource, PrettierSource } from 'storybook-addon-prettier-sou
 import { withInfo } from '@storybook/addon-info';
 
 addDecorator((story, context) => withPrettierSource()(story)(context);
+
 addDecorator((story, context) => withInfo({
   source: false,
   propTablesExclude: [PrettierSource]
@@ -57,10 +58,24 @@ addDecorator((story, context) => withInfo({
 
 `withPrettierSource` takes an optional parameter for configuring options
 
+Defaults shown are merged with any options provided
+
 ```javascript
 {
-  prettier: { /* prettier options */ },
-  syntaxHighlighter: { /* react-syntax-highlighter options */ }
+  prettier: {
+    /* prettier options */
+    parser: 'babylon',
+    plugins: [require('prettier/parser-babylon')]
+  },
+  syntaxHighlighter: {
+    /* react-syntax-highlighter options */
+    language: 'javascript',
+    style: require('react-syntax-highlighter/styles/prism/tomorrow')
+  },
+  reactElToString: {
+    /* react-element-to-jsx-string options */
+    sortProps: false
+  }
 }
 ```
 
@@ -81,10 +96,27 @@ addDecorator((story, context) => withPrettierSource({
 
 Customise any of the [react-syntax-highlighter](https://github.com/conorhastings/react-syntax-highlighter) options to control how your source code looks
 
+To change the style, provide one of the [prism styles](https://github.com/conorhastings/react-syntax-highlighter/tree/master/src/styles/prism) - you will need to install `react-syntax-highlighter` in your project
+
 ```javascript
+import dark from 'react-syntax-highlighter/styles/prism/dark'
+
 addDecorator((story, context) => withPrettierSource({
   syntaxHighlighter: {
-    showLineNumbers: true
+    showLineNumbers: true,
+    style: dark
+  }
+})(story)(context);
+```
+
+### reactElToString
+
+Provide options for the [react-element-to-jsx-string](https://github.com/algolia/react-element-to-jsx-string) library to control how your story component is turned into source code (keep in mind that the formatting is handled by prettier, so changing any of the format-related options may not do anything)
+
+```javascript
+addDecorator((story, context) => withPrettierSource({
+  reactElToString: {
+    filterProps: ['wrapper']
   }
 })(story)(context);
 ```
