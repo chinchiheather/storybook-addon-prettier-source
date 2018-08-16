@@ -191,9 +191,7 @@ PrettierSource.defaultProps = {
   prettierOpts: {},
   syntaxHighlighterOpts: {}
 };
-function withPrettierSource(story, context) {
-  var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-
+function addPrettierSource(story, context, opts) {
   return React__default.createElement(
     PrettierSource,
     {
@@ -202,6 +200,16 @@ function withPrettierSource(story, context) {
     },
     story(context)
   );
+}
+
+function withPrettierSource() {
+  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+  return function (story) {
+    return function (context) {
+      return addPrettierSource(story, context, opts);
+    };
+  };
 }
 
 exports.withPrettierSource = withPrettierSource;

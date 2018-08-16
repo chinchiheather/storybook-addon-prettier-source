@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-prettier-source",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Storybook addon to show inline story source formatted using prettier and a syntax highlighter",
   "main": "dist/index.js",
   "license": "MIT",
@@ -28,6 +28,9 @@
     "react": "^16.4.2",
     "react-element-to-string": "^1.0.2",
     "react-syntax-highlighter": "^8.0.1"
+  },
+  "peerDependencies": {
+    "@storybook/react": "^3.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

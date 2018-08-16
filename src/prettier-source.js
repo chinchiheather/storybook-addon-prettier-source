@@ -78,7 +78,7 @@ export class PrettierSource extends Component {
   }
 }
 
-export function withPrettierSource(story, context, opts = {}) {
+function addPrettierSource(story, context, opts) {
   return (
     <PrettierSource
       prettierOpts={opts.prettier}
@@ -87,4 +87,8 @@ export function withPrettierSource(story, context, opts = {}) {
       {story(context)}
     </PrettierSource>
   );
+}
+
+export function withPrettierSource(opts = {}) {
+  return (story) => (context) => addPrettierSource(story, context, opts);
 }

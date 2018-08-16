@@ -22,6 +22,20 @@ import { withPrettierSource } from 'storybook-addon-prettier-source';
 addDecorator((story, context) => withPrettierSource(story, context));
 ```
 
+**Or** use per story
+
+```javascript
+import { withPrettierSource } from 'storybook-addon-prettier-source';
+
+storiesOf('Button', module)
+  .add(
+    'text',
+    withPrettierSource()(() => (
+        <Button text="Default" onClick={action('click')} />
+    ))
+  )
+```
+
 ## Configuration
 
 `withPrettierSource` takes an optional third parameter for configuring options
@@ -35,7 +49,7 @@ addDecorator((story, context) => withPrettierSource(story, context));
 
 ### prettier
 
-We are using the [standalone UMD bundle](https://prettier.io/docs/en/browser.html) that runs in the browser, you can customise the options passed to `pretter.format()`
+We are using the [standalone UMD bundle](https://prettier.io/docs/en/browser.html) that runs in the browser, you can customise the options passed to `prettier.format()`
 
 ```javascript
 addDecorator((story, context) => withPrettierSource(story, context, {
