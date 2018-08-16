@@ -213,3 +213,4 @@ function withPrettierSource() {
 }
 
 exports.withPrettierSource = withPrettierSource;
+exports.PrettierSource = PrettierSource;

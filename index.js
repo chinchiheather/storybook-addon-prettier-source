@@ -1,3 +1,3 @@
-import { withPrettierSource } from './src/prettier-source';
+import { withPrettierSource, PrettierSource } from './src/prettier-source';
 
-export { withPrettierSource };
+export { withPrettierSource, PrettierSource };
