@@ -43,7 +43,12 @@
     }],
 
     "indent": [ "error", 2, {"SwitchCase": 1} ],
-    "import/no-extraneous-dependencies": ["error"],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": [
+        "scripts/**/*.js",
+        "**/*.spec.js"
+      ]
+    }],
     "no-new": 0,
     "guard-for-in": 0,
     "no-param-reassign": 0,
