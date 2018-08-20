@@ -54,6 +54,7 @@
     "no-new": 0,
     "guard-for-in": 0,
     "no-param-reassign": 0,
+    "no-return-assign": 0,
     "max-len": 0,
     "linebreak-style": [ "error", "unix" ],
     "no-mixed-operators": 0,
