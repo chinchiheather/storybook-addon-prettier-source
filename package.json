@@ -7,7 +7,10 @@
   "scripts": {
     "compile": "rollup -c",
     "lint": "eslint ./src",
-    "lint:fix": "eslint --fix ./src"
+    "lint:fix": "eslint --fix ./src",
+    "test": "jest --coverage --config jest.config.full-run.js",
+    "test:watch": "jest --watch --config jest.config.base.js",
+    "test:ci": "jest --coverage --config jest.config.ci.js"
   },
   "husky": {
     "hooks": {
@@ -41,10 +44,13 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.2",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
+    "enzyme": "^3.4.4",
+    "enzyme-adapter-react-16": "^1.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
@@ -54,6 +60,11 @@
     "eslint-plugin-react": "^7.11.0",
     "eslint-plugin-unicorn": "^5.0.0",
     "husky": "^1.0.0-rc.13",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.5.0",
+    "jest-runner-eslint": "^0.6.0",
+    "react-dom": "^16.4.2",
+    "react-test-renderer": "^16.4.2",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.5",

@@ -42,7 +42,7 @@ function styleInject(css, ref) {
   }
 }
 
-var css = ".source {\n  padding: 40px;\n}\n\n.source h3 {\n  font-size: 25px;\n  color: #444;\n}\n\n.source .code {\n  font-size: 14px;\n}\n";
+var css = ".source {\n  padding: 40px;\n}\n\n.source h3 {\n  font-size: 25px;\n  line-height: 40px;\n  color: #444;\n  border-bottom: 1px solid #eee;\n}\n\n.source .code {\n  font-size: 14px;\n  margin: 24px 0 0 !important;\n}\n";
 styleInject(css);
 
 var classCallCheck = function (instance, Constructor) {

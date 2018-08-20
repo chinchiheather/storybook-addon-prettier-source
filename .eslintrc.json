@@ -47,7 +47,8 @@
       "devDependencies": [
         "scripts/**/*.js",
         "**/*.spec.js",
-        "rollup.config.js"
+        "rollup.config.js",
+        "test/**"
       ]
     }],
     "no-new": 0,
