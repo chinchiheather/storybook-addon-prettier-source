@@ -4,7 +4,7 @@
 
 Storybook addon to show inline story source code formatted using prettier and syntax highlighting
 
-This is an addon for use with [@storybook/react](https://github.com/storybooks/storybook/tree/master/app/react)
+This is an addon for use with [@storybook/react](https://github.com/storybooks/storybook/tree/master/app/react) v4.0.0-alpha.x - to use with @storybook/react v3.x install the latest v2.x of this addon
 
 ![screenshot 1](https://chinchiheather.github.io/storybook-addon-prettier-source/img/screenshot-1.png)
 
@@ -19,17 +19,53 @@ npm install --save-dev storybook-addon-prettier-source
 
 ## Usage
 
+All the APIs below can be combined together in various ways to meet your project's needs
+
 ### Global Decorator
-Apply to all your stories by adding a decorator in your `.storybook/config.js` file:
+Apply addon to all your stories by adding a decorator in your `.storybook/config.js` file:
 
 ```javascript
 import { withPrettierSource } from 'storybook-addon-prettier-source';
 
-addDecorator((story, context) => withPrettierSource()(story)(context);
+addDecorator(withPrettierSource);
+```
+
+Apply addon configuration to all stories by passing in the options to the decorator in your `.storybook/config.js` file:
+
+```javascript
+import { withPrettierSource } from 'storybook-addon-prettier-source';
+
+addDecorator(withPrettierSource({
+  syntaxHighlighter: { showLineNumbers: true },
+  reactElToString: { sortProps: true }
+}));
+```
+
+### Stories
+Apply addon to all stories of a component:
+
+```javascript
+import { withPrettierSource } from 'storybook-addon-prettier-source';
+
+storiesOf('Button')
+  .addDecorator(withPrettierSource)
+  .add(...);
+```
+
+Apply addon configuration to all stories of a component:
+
+```javascript
+storiesOf('Button')
+  .addParameters({
+    prettierSource: {
+      disable: true
+    }
+  })
+  .add(...);
 ```
 
 ### Single Story
-**Or** use per story
+Apply addon configuration to a single story:
 
 ```javascript
 import { withPrettierSource } from 'storybook-addon-prettier-source';
@@ -37,48 +73,62 @@ import { withPrettierSource } from 'storybook-addon-prettier-source';
 storiesOf('Button', module)
   .add(
     'text',
-    withPrettierSource()(() => (
-        <Button text="Default" onClick={action('click')} />
-    ))
+    () => <Button text="Default" onClick={action('click')} />,
+    {
+      prettierSource: {
+        disable: true
+      }
+    }
+  )
+  .add(
+    'icon',
+    () => <Button icon={PlusIcon} onClick={action('click')} />,
+    {
+      prettierSource: {
+        syntaxHighlighter: { showLineNumbers: true }
+      }
+    }
   )
 ```
 
 ### Combine With @storybook/addon-info
-You can easily combine this with the [@storybook/addon-info](https://github.com/storybooks/storybook/tree/release/3.4/addons/info) addon, just disable the source code option in addon-info and exclude the `PrettierSource` component from the prop tables
+You can easily combine this with the [@storybook/addon-info](https://github.com/storybooks/storybook/tree/addons/info) addon, just disable the source code option in addon-info and exclude the `PrettierSource` component from the prop tables
 
 ```javascript
 import { withPrettierSource, PrettierSource } from 'storybook-addon-prettier-source';
 import { withInfo } from '@storybook/addon-info';
 
-addDecorator((story, context) => withPrettierSource()(story)(context);
+addDecorator(withPrettierSource);
 
-addDecorator((story, context) => withInfo({
+addDecorator(withInfo({
   source: false,
   propTablesExclude: [PrettierSource]
- })(story)(context);
+ }));
 ```
 
 ## Configuration
-
-`withPrettierSource` takes an optional parameter for configuring options
 
 Defaults shown are merged with any options provided
 
 ```javascript
 {
-  disable: false, /* disable addon for a particular story or story group */
+  /* disable addon for a particular story or stories */
+  disable: false,
+
+  /* prettier options */
   prettier: {
-    /* prettier options */
     parser: 'babylon',
     plugins: [require('prettier/parser-babylon')]
   },
+
+  /* react-syntax-highlighter options */
   syntaxHighlighter: {
-    /* react-syntax-highlighter options */
     language: 'javascript',
     style: require('react-syntax-highlighter/styles/prism/tomorrow')
   },
+
+  /* react-element-to-jsx-string options */
   reactElToString: {
-    /* react-element-to-jsx-string options */
     sortProps: false
   }
 }
@@ -89,12 +139,12 @@ Defaults shown are merged with any options provided
 We are using the [standalone UMD bundle](https://prettier.io/docs/en/browser.html) that runs in the browser, you can customise the options passed to `prettier.format()`
 
 ```javascript
-addDecorator((story, context) => withPrettierSource({
+addDecorator(withPrettierSource({
   prettier: {
     parser: 'graphql',
     plugins: [require("prettier/parser-graphql")]
   }
-})(story)(context);
+}));
 ```
 
 ### syntaxHighlighter
@@ -106,12 +156,12 @@ To change the style, provide one of the [prism styles](https://github.com/conorh
 ```javascript
 import dark from 'react-syntax-highlighter/styles/prism/dark'
 
-addDecorator((story, context) => withPrettierSource({
+addDecorator(withPrettierSource({
   syntaxHighlighter: {
     showLineNumbers: true,
     style: dark
   }
-})(story)(context);
+}));
 ```
 
 ### reactElToString
@@ -119,9 +169,9 @@ addDecorator((story, context) => withPrettierSource({
 Provide options for the [react-element-to-jsx-string](https://github.com/algolia/react-element-to-jsx-string) library to control how your story component is turned into source code (keep in mind that the formatting is handled by prettier, so changing any of the format-related options may not do anything)
 
 ```javascript
-addDecorator((story, context) => withPrettierSource({
+addDecorator(withPrettierSource({
   reactElToString: {
     filterProps: ['wrapper']
   }
-})(story)(context);
+}));
 ```
