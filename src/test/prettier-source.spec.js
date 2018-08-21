@@ -197,4 +197,16 @@ describe('PrettierSource', () => {
       });
     });
   });
+
+  describe('Changing child story content', () => {
+    it('renders new child story content', () => {
+      wrap.setProps({
+        children: <div>This is a new story</div>
+      });
+      wrap.update();
+
+      const formatted = mockReactElToJsxString.mock.calls[0][0];
+      expect(formatted).toEqual(defaultProps.children);
+    });
+  });
 });
