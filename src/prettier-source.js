@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { makeDecorator } from '@storybook/addons';
 import reactElToString from 'react-element-to-jsx-string';
 import prettier from 'prettier/standalone';
 import parser from 'prettier/parser-babylon';
@@ -114,6 +115,18 @@ function addPrettierSource(story, context, opts) {
   );
 }
 
-export function withPrettierSource(opts = {}) {
-  return (story) => (context) => addPrettierSource(story, context, opts);
-}
+export const withPrettierSource = makeDecorator({
+  name: 'withPrettierSource',
+  parameterName: 'prettierSource',
+  allowDeprecatedUsage: true,
+  wrapper: (story, context, { options, parameters }) => {
+    const storyOptions = parameters || options;
+    const infoOptions =
+      typeof storyOptions === 'string' ? { text: storyOptions } : storyOptions;
+    const mergedOptions =
+      typeof infoOptions === 'string'
+        ? infoOptions
+        : { ...options, ...infoOptions };
+    return addPrettierSource(story, context, mergedOptions);
+  }
+});

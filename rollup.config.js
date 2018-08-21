@@ -9,6 +9,7 @@ export default {
     format: 'cjs'
   },
   external: [
+    '@storybook/addons',
     'prop-types',
     'react',
     'prettier/standalone',

@@ -7,6 +7,7 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var React = require('react');
 var React__default = _interopDefault(React);
 var PropTypes = _interopDefault(require('prop-types'));
+var addons = require('@storybook/addons');
 var reactElToString = _interopDefault(require('react-element-to-jsx-string'));
 var prettier = _interopDefault(require('prettier/standalone'));
 var parser = _interopDefault(require('prettier/parser-babylon'));
@@ -219,15 +220,20 @@ function addPrettierSource(story, context, opts) {
   );
 }
 
-function withPrettierSource() {
-  var opts = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+var withPrettierSource = addons.makeDecorator({
+  name: 'withPrettierSource',
+  parameterName: 'prettierSource',
+  allowDeprecatedUsage: true,
+  wrapper: function wrapper(story, context, _ref) {
+    var options = _ref.options,
+        parameters = _ref.parameters;
 
-  return function (story) {
-    return function (context) {
-      return addPrettierSource(story, context, opts);
-    };
-  };
-}
+    var storyOptions = parameters || options;
+    var infoOptions = typeof storyOptions === 'string' ? { text: storyOptions } : storyOptions;
+    var mergedOptions = typeof infoOptions === 'string' ? infoOptions : _extends({}, options, infoOptions);
+    return addPrettierSource(story, context, mergedOptions);
+  }
+});
 
 exports.withPrettierSource = withPrettierSource;
 exports.PrettierSource = PrettierSource;
