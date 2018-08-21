@@ -4,9 +4,12 @@
 
 .source h3 {
   font-size: 25px;
+  line-height: 40px;
   color: #444;
+  border-bottom: 1px solid #eee;
 }
 
 .source .code {
   font-size: 14px;
+  margin: 24px 0 0 !important;
 }

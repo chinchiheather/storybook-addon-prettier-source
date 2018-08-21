@@ -3,5 +3,14 @@
     [ "env", { "modules": false } ],
     "react",
     "stage-1"
-  ]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [ "env", { "modules": "commonjs" } ],
+        "react",
+        "stage-1"
+      ]
+    }
+  }
 }
