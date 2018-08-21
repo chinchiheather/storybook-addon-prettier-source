@@ -92,7 +92,7 @@ storiesOf('Button', module)
 ```
 
 ### Combine With @storybook/addon-info
-You can easily combine this with the [@storybook/addon-info](https://github.com/storybooks/storybook/tree/addons/info) addon, just disable the source code option in addon-info and exclude the `PrettierSource` component from the prop tables
+You can easily combine this with the [@storybook/addon-info](https://github.com/storybooks/storybook/tree/master/addons/info) addon, just disable the source code option in addon-info and exclude the `PrettierSource` component from the prop tables
 
 ```javascript
 import { withPrettierSource, PrettierSource } from 'storybook-addon-prettier-source';
