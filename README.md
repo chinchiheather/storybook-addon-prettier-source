@@ -1,5 +1,7 @@
 # storybook-addon-prettier-source
 
+[![CircleCI](https://img.shields.io/circleci/project/github/chinchiheather/storybook-addon-prettier-source.svg)](https://circleci.com/gh/chinchiheather/storybook-addon-prettier-source/tree/master)
+
 Storybook addon to show inline story source code formatted using prettier and syntax highlighting
 
 This is an addon for use with [@storybook/react](https://github.com/storybooks/storybook/tree/master/app/react)
