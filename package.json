@@ -6,8 +6,8 @@
   "license": "MIT",
   "scripts": {
     "compile": "rollup -c",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint --fix ./src",
+    "lint": "eslint ./src ./test jest.**.js index.js",
+    "lint:fix": "eslint --fix ./src ./test jest.**.js index.js",
     "test": "jest --coverage --config jest.config.full-run.js",
     "test:watch": "jest --watch --config jest.config.base.js",
     "test:ci": "jest --coverage --config jest.config.ci.js"
