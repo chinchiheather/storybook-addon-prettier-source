@@ -127,6 +127,10 @@ export const withPrettierSource = makeDecorator({
       typeof infoOptions === 'string'
         ? infoOptions
         : { ...options, ...infoOptions };
+
+    if (mergedOptions.disable === true) {
+      return story(context);
+    }
     return addPrettierSource(story, context, mergedOptions);
   }
 });

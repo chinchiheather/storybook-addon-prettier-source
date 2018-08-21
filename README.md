@@ -66,6 +66,7 @@ Defaults shown are merged with any options provided
 
 ```javascript
 {
+  disable: false, /* disable addon for a particular story or story group */
   prettier: {
     /* prettier options */
     parser: 'babylon',

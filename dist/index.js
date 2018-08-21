@@ -231,6 +231,10 @@ var withPrettierSource = addons.makeDecorator({
     var storyOptions = parameters || options;
     var infoOptions = typeof storyOptions === 'string' ? { text: storyOptions } : storyOptions;
     var mergedOptions = typeof infoOptions === 'string' ? infoOptions : _extends({}, options, infoOptions);
+
+    if (mergedOptions.disable === true) {
+      return story(context);
+    }
     return addPrettierSource(story, context, mergedOptions);
   }
 });
