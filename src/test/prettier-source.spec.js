@@ -7,14 +7,18 @@ import SyntaxHighlighter from 'react-syntax-highlighter/prism-light';
 
 describe('PrettierSource', () => {
   let PrettierSource;
-
   let defaultProps;
   let wrap;
-
   let mockStoryJsx;
 
   const mockReactElToJsxString = jest.fn(() => mockStoryJsx);
   const mockPrettier = { format: jest.fn(() => mockStoryJsx) };
+
+  function renderComponent(props = defaultProps) {
+    mockReactElToJsxString.mockClear();
+    mockPrettier.format.mockClear();
+    wrap = shallow(<PrettierSource {...props} />);
+  }
 
   beforeEach(() => {
     mockStoryJsx = `<div className="story-content">
@@ -22,10 +26,6 @@ describe('PrettierSource', () => {
     This is a story which will be turned into prettier source code
   </span>
 </div>`;
-
-    jest.mock('react-element-to-jsx-string', () => mockReactElToJsxString);
-    jest.mock('prettier/standalone', () => mockPrettier);
-    ({ PrettierSource } = require('../prettier-source'));
 
     defaultProps = {
       children: (
@@ -40,15 +40,13 @@ describe('PrettierSource', () => {
       reactElToStringOpts: null
     };
 
+    jest.mock('react-element-to-jsx-string', () => mockReactElToJsxString);
+    jest.mock('prettier/standalone', () => mockPrettier);
+
+    ({ PrettierSource } = require('../prettier-source'));
+
     renderComponent();
   });
-
-  function renderComponent(props = defaultProps) {
-    mockReactElToJsxString.mockClear();
-    mockPrettier.format.mockClear();
-
-    wrap = shallow(<PrettierSource {...props} />);
-  }
 
   describe('Rendering the component', () => {
     it('renders child story content', () => {
@@ -71,7 +69,7 @@ describe('PrettierSource', () => {
         expect(formatted).toEqual(defaultProps.children);
       });
 
-      it('passes through reactElToString options', () => {
+      it('sets react el to string options', () => {
         const customOptsProps = {
           ...defaultProps,
           reactElToStringOpts: {
@@ -84,7 +82,7 @@ describe('PrettierSource', () => {
         expect(options).toEqual(customOptsProps.reactElToStringOpts);
       });
 
-      it('merges reactElToString options with defaults', () => {
+      it('merges react el to string options with defaults', () => {
         const customOptsProps = {
           ...defaultProps,
           reactElToStringOpts: {
@@ -125,7 +123,7 @@ describe('PrettierSource', () => {
         expect(mockPrettier.format).toHaveBeenCalled();
       });
 
-      it('passes through prettierOpts', () => {
+      it('sets prettier options', () => {
         const customOptsProps = {
           ...defaultProps,
           prettierOpts: {
@@ -139,7 +137,7 @@ describe('PrettierSource', () => {
         expect(options).toEqual(customOptsProps.prettierOpts);
       });
 
-      it('merges prettierOpts with defaults', () => {
+      it('merges prettier options with defaults', () => {
         const customOptsProps = {
           ...defaultProps,
           prettierOpts: {
@@ -170,20 +168,20 @@ describe('PrettierSource', () => {
 </div>`);
       });
 
-      it('passes through syntaxHighlighterOpts', () => {
+      it('passes through syntax highlighter options', () => {
         const customOptsProps = {
           ...defaultProps,
           syntaxHighlighterOpts: {
-            displayLines: true
+            showLineNumbers: true
           }
         };
         renderComponent(customOptsProps);
         const codeEl = wrap.find(SyntaxHighlighter);
 
-        expect(codeEl.prop('displayLines')).toBeTruthy();
+        expect(codeEl.prop('showLineNumbers')).toBe(true);
       });
 
-      it('merges syntaxHighlighterOpts with defaults', () => {
+      it('merges syntax highlighter options with defaults', () => {
         const dark = require('react-syntax-highlighter/styles/prism/dark');
         const customOptsProps = {
           ...defaultProps,

@@ -89,7 +89,7 @@ We are using the [standalone UMD bundle](https://prettier.io/docs/en/browser.htm
 addDecorator((story, context) => withPrettierSource({
   prettier: {
     parser: 'graphql',
-    plugin: [require("prettier/parser-graphql")]
+    plugins: [require("prettier/parser-graphql")]
   }
 })(story)(context);
 ```
