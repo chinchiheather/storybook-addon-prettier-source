@@ -25,7 +25,7 @@ describe('withPrettierSource', () => {
       kind: 'Button',
       name: 'text'
     };
-    wrap = shallow(<div>{withPrettierSource(options)(story)(context)}</div>);
+    wrap = shallow(<div>{withPrettierSource(options)(story, context)}</div>);
     prettierSourceEl = wrap.find(PrettierSource);
   }
 
