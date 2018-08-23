@@ -1,6 +1,6 @@
 {
   "name": "storybook-addon-prettier-source",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Storybook addon to show inline story source code formatted using prettier and a syntax highlighter",
   "main": "dist/index.js",
   "license": "MIT",
