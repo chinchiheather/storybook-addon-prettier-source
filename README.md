@@ -136,13 +136,12 @@ Defaults shown are merged with any options provided
 
 ### prettier
 
-We are using the [standalone UMD bundle](https://prettier.io/docs/en/browser.html) that runs in the browser, you can customise the options passed to `prettier.format()`
+We are using the [standalone UMD bundle](https://prettier.io/docs/en/browser.html) that runs in the browser, you can customise any of [prettier's options](https://prettier.io/docs/en/options.html)
 
 ```javascript
 addDecorator(withPrettierSource({
   prettier: {
-    parser: 'graphql',
-    plugins: [require("prettier/parser-graphql")]
+    tabWidth: 4
   }
 }));
 ```
